@@ -1,4 +1,4 @@
-C# WINDOWS FORM APPLICATION : TEAMVIEWER Project Overview
+C# Windows Form Application : TEAMVIEWER Project Overview
 
 /////////////////////////////////////////////////////////////////////////////
 Use:
@@ -59,3 +59,25 @@ http://www.tutorialspoint.com/csharp/
 
 
 /////////////////////////////////////////////////////////////////////////////
+
+The Project uses classic C# WinForms client + a small C/C++ login server—no obvious package manager files (no packages.config, no NuGet refs) and the README points to a plain Visual Studio setup, so it likely relies only on built-in .NET / Win32 libs rather than third-party packages.  ￼
+
+Here’s the best-effort library/namespace inventory you’d expect in a project like this:
+
+C# WinForms client (built-in .NET Framework)
+	•	System
+	•	System.Windows.Forms
+	•	System.Drawing
+	•	System.IO
+	•	System.Net
+	•	System.Net.Sockets
+	•	System.Threading / System.Threading.Tasks
+	•	System.ComponentModel
+	•	System.Data (often present by template even if not used)
+
+C/C++ “login server” (Win32 / Winsock)
+	•	Headers: winsock2.h, windows.h, (possibly ws2tcpip.h)
+	•	Linker import libs: Ws2_32.lib, Advapi32.lib (the latter only if doing any registry/crypto), sometimes Mswsock.lib for extras
+
+Third-party / NuGet packages
+	•	None apparent in the repo structure/README (looks like a straight Visual Studio solution without external deps). 
