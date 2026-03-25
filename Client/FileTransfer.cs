@@ -1,21 +1,21 @@
-﻿using System;
+﻿using client_ppp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
-using System.Net;
-using client_ppp;
-using System.Security.Cryptography;
 using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
-using VirusTotalNET.Objects;
-using VirusTotalNET.ResponseCodes;
-using VirusTotalNET.Results;
-using VirusTotalNET;
+using System.Windows.Forms;
+using VirusTotalNet;
+using VirusTotalNet.Objects;
+using VirusTotalNet.ResponseCodes;
+using VirusTotalNet.Results;
 
 public partial class Main : Form
 {
@@ -56,7 +56,7 @@ public partial class Main : Form
                 cs.Write(bytes, 0, bytes.Length);
                 cs.FlushFinalBlock();
                 data = ms.ToArray();
-                
+
             }
         }
         return data;
@@ -103,7 +103,7 @@ public partial class Main : Form
     //This will hold our output folder.
     private string outputFolder;
     //This will hold our overall progress timer.
-    private Timer tmrOverallProg;
+    private System.Windows.Forms.Timer tmrOverallProg;
     //This is our variable to determine of the server is running or not to accept another connection if our client
     //Disconnects
     private bool serverRunning;
@@ -116,7 +116,7 @@ public partial class Main : Form
         listener.Accepted += listener_Accepted;
 
         //Create the timer and register the event.
-        tmrOverallProg = new Timer();
+        tmrOverallProg = new System.Windows.Forms.Timer();
         tmrOverallProg.Interval = 1000;
         tmrOverallProg.Tick += tmrOverallProg_Tick;
 
@@ -163,7 +163,7 @@ public partial class Main : Form
             Invoke(new SocketAcceptedHandler(listener_Accepted), sender, e);
             return;
         }
-        
+
         //Stop the listener
         listener.Stop();
 
@@ -298,7 +298,7 @@ public partial class Main : Form
 
         //Create the LVI for the new transfer.
         ListViewItem i = new ListViewItem();
-         i.Text = queue.ID.ToString();
+        i.Text = queue.ID.ToString();
         i.SubItems.Add(queue.Filename);
         //If the type equals download, it will use the string of "Download", if not, it'll use "Upload"
         i.SubItems.Add(queue.Type == QueueType.Download ? "Download" : "Upload");
@@ -307,7 +307,7 @@ public partial class Main : Form
         i.Name = queue.ID.ToString(); //Set the name of the item to the ID of our transfer for easy access.
         lstTransfers.Items.Add(i); //Add the item
         i.EnsureVisible();
-        
+
         //If the type is download, let the uploader know we're ready.
         if (queue.Type == QueueType.Download)
         {
@@ -527,7 +527,7 @@ public partial class Main : Form
     {
         if (transferClient == null)
             return;
-        
+
         using (OpenFileDialog o = new OpenFileDialog())
         {
             o.Filter = "All Files (*.*)|*.*";
@@ -557,18 +557,12 @@ public partial class Main : Form
                         //byte[] eicar = Encoding.ASCII.GetBytes(@"X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*");
 
                         //Check if the file has been scanned before.
-                        FileReport fileReport;
+                        //FileReport fileReport;
 
-                        fileReport = await virusTotal.GetFileReportAsync(fileBytes);
+                        var fileReport = await virusTotal.GetFileReportAsync(fileBytes);
 
-                        //catch
-                        //{
-                        //    // can only scan 4 files in one minute
-                        //    System.Threading.Thread.Sleep(60000);
-                        //    fileReport = await virusTotal.GetFileReportAsync(fileBytes);
-                        //}
-
-                        bool hasFileBeenScannedBefore = fileReport.ResponseCode == FileReportResponseCode.Present;
+                        // Determine whether a previous report exists
+                        bool hasFileBeenScannedBefore = fileReport != null && fileReport.ResponseCode == FileReportResponseCode.Present;
 
                         Console.WriteLine("File has been scanned before: " + (hasFileBeenScannedBefore ? "Yes" : "No"));
 
@@ -733,4 +727,4 @@ public partial class Main : Form
         }
         return count;
     }
-}
+}   

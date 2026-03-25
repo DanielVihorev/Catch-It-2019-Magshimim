@@ -183,18 +183,7 @@ namespace client_ppp
         */
         private void Init_Data()
         {
-            if (Properties.Settings.Default.Username != string.Empty)
-            {
-                if (Properties.Settings.Default.Remember == "yes")
-                {
-                    usernameBox.Text = Properties.Settings.Default.Username;
-                    passwordBox.Text = Properties.Settings.Default.Password;
-                }
-                else
-                {
-                    usernameBox.Text = Properties.Settings.Default.Username;
-                }
-            }
+    
 
         }
 
@@ -206,17 +195,17 @@ namespace client_ppp
         {
             if (remeberBox.Checked)
             {
-                Properties.Settings.Default.Username = usernameBox.Text;
-                Properties.Settings.Default.Password = passwordBox.Text;
-                Properties.Settings.Default.Remember = "yes";
-                Properties.Settings.Default.Save();
+                //Properties.Settings.Default.Username = usernameBox.Text;
+                //Properties.Settings.Default.Password = passwordBox.Text;
+                //Properties.Settings.Default.Remember = "yes";
+                //Properties.Settings.Default.Save();
             }
             else
             {
-                Properties.Settings.Default.Username = "";
-                Properties.Settings.Default.Password = "";
-                Properties.Settings.Default.Remember = "no";
-                Properties.Settings.Default.Save();
+                //Properties.Settings.Default.Username = "";
+                //Properties.Settings.Default.Password = "";
+                //Properties.Settings.Default.Remember = "no";
+                //Properties.Settings.Default.Save();
             }
         }
 
