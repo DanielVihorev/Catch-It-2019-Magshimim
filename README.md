@@ -1,6 +1,23 @@
 C# Windows Form Application : TEAMVIEWER Project Overview
 
-Uploading IMG_4221.mov…
+Server Running:
+
+<img width="1592" height="906" alt="image" src="https://github.com/user-attachments/assets/70fbb19d-96c4-478b-9898-3da914762926" />
+
+Client Screen:
+
+<img width="463" height="433" alt="image" src="https://github.com/user-attachments/assets/8183b74b-45a2-48b9-b536-81a14428bf8e" />
+
+On Client Connection We will see this screen:
+
+<img width="601" height="535" alt="image" src="https://github.com/user-attachments/assets/ec0350c1-1ae3-4d2f-9f39-360423a3814a" />
+
+Error via Files Sharing: 
+
+<img width="446" height="212" alt="image" src="https://github.com/user-attachments/assets/5bfad30d-ce76-4aa1-b0dc-9e864b8a4a59" />
+
+Previously Worked.
+Need to Add Error via Share Screen.
 
 /////////////////////////////////////////////////////////////////////////////
 Use:
