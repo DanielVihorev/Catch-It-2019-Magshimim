@@ -2,7 +2,7 @@ C# Windows Form Application : TEAMVIEWER Project Overview
 
 Server Running:
 
-<img width="1027" height="597" alt="image" src="https://github.com/user-attachments/assets/e2bea3a5-5cfd-43b1-8532-d228452c36eb" />
+<img width="1022" height="606" alt="image" src="https://github.com/user-attachments/assets/f804d302-44e0-42d2-af9b-3d515579e44d" />
 
 Client Screen:
 
